@@ -1,0 +1,43 @@
+.navbar{
+    color: red;
+    display: flex;
+    justify-content: space-between;
+    padding: 1em 5em 2em 5em;
+    background-color: blue;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+}
+
+.nav_product{
+    color: white;
+    
+}
+
+.nav_product1{
+    color: white;
+    text-decoration: none;
+}
+
+.cartt{
+    position: relative;
+}
+
+.cart_number{
+    color: blue;
+    position: absolute;
+    top: -0.5em;
+    right: -0.5em;
+    font-size: 16px;
+    height: 1.3em;
+    width: 1.3em;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+}
+
+/* a{
+    text-decoration: none;
+} */
