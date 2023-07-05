@@ -1,14 +1,18 @@
 import React from 'react'
+import { useSearchParams, Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { add } from '../../store/cartSlice'
 import './product.css'
 
 
 const Product = () => {
-
+  
+   const [filters, setFilter] = useSearchParams()
     const dispatch = useDispatch()
 
     const [products, setProducts] = React.useState([])
+    
+    const filterItem = filters.get('category')
 
     React.useEffect(() => {
       fetch('https://fakestoreapi.com/products')
@@ -20,7 +24,11 @@ const Product = () => {
         dispatch(add(product))
     }
 
-    const item = products.map(product => {
+    const productFilter = filterItem 
+      ? products.filter(product => product.category === filterItem) 
+      : products
+
+    const item = productFilter.map(product => {
 
       const firstLetter = product.category.charAt(0).toUpperCase()
       const remainingLetter = firstLetter + product.category.slice(1)
@@ -39,19 +47,29 @@ const Product = () => {
                 <button onClick={() => addToCart(product)}>Add to card</button>
             </footer>
            </section>
-
-            
-
         </div>
-            
-            
         </div>
     })
 
   return (
-    <div className="product_con">
+    <div>
+
+      <div className='filter'>
+
+        <ul>
+          <button onClick={() => setFilter(`category=men's clothing`)}>Men</button>
+          <button onClick={() => setFilter('category=jewelery')}>Jewery</button>
+          <button onClick={() => setFilter('category=electronics')}>Electronics</button>
+          <button onClick={() => setFilter(`category=women's clothing`)}>Women's clothing</button>
+          <Link to='.'>Clear filter</Link>
+
+        </ul>
+        
+      </div>
       
+      <div className="product_con">
         {item}
+      </div>
       
     </div>
   )

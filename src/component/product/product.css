@@ -6,7 +6,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
 
+.filter{
+    padding: 2em 7em 2em 7em;
+    display: flex;
+    justify-content: space-around;
 }
 
 .cart{

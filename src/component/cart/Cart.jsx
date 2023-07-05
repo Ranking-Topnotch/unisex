@@ -25,10 +25,19 @@ const Cart = () => {
   const removeCart = id => {
     dispatch(remove(id))
   }
+
+  const calculateTotal = () => {
+    let total = 0;
+
+    cartProducts.forEach(product => {
+      const amount = product.price * (number[product.id] || 1);
+      total += amount;
+    });
+
+    return total;
+  };
   const rawData = cartProducts.map(product => {
     const amount = product.price * number[product.id] || product.price
-    const sum = amount + amount
-    console.log(sum)
     const firstLetter = product.category.charAt(0).toUpperCase()
     const remainingLetter = firstLetter + product.category.slice(1)
 
@@ -65,7 +74,7 @@ const Cart = () => {
       <div className='cart_detail'>
         {rawData}
       </div>
-      <h2>Total = {2}</h2>
+      <h2>Total = {calculateTotal()}</h2>
     </div>
   )
 }
